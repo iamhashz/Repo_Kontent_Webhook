@@ -1,0 +1,8 @@
+{
+  "name": "kontent-webhooks",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@kontent-ai/management-sdk": "^8.1.0"
+  }
+}
