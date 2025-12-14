@@ -16,6 +16,8 @@ const client = new ManagementClient({
 
 export default async function handler(req, res) {
   try {
+    console.log('Validation webhook triggered');
+
     const event = req.body;
 
     const item = event?.data?.items?.[0];
