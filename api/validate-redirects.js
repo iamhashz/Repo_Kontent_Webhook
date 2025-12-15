@@ -14,10 +14,31 @@ function normalizeUrl(path) {
   return path?.trim().toLowerCase().replace(/\/+$/, '') || '/';
 }
 
+async function getPublishedUrls() {
+  const urls = new Set();
+
+  const response = await deliveryClient
+    .items()
+    .elementsParameter(['slug'])
+    .toPromise();
+
+  response.data.items.forEach(item => {
+    const slug = item.elements?.slug?.value;
+    if (slug) {
+      urls.add(normalizeUrl(`/${slug}`));
+    }
+  });
+
+  // Always allow homepage
+  urls.add('/');
+
+  return urls;
+}
+
 export default async function handler(req, res) {
   try {
     console.log("Validation webhook triggered");
-    
+
     const item = req.body?.data?.items?.[0];
     if (!item) return res.status(200).json({ isValid: true });
 
