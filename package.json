@@ -3,6 +3,7 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@kontent-ai/delivery-sdk": "^16.4.0",
     "@kontent-ai/management-sdk": "^8.1.0"
   }
 }
